@@ -20,7 +20,7 @@ python tools/validate-skill.py --all
 - Valid YAML frontmatter (between `---` markers)
 - Required fields present: `name`, `description`, `domain`, `subdomain`, `tags`
 - Name is kebab-case, 1–64 characters
-- Description is 20–500 characters
+- Description is at least 50 characters (no upper limit; multi-line folded scalars are valid)
 - Domain is `cybersecurity`
 - Subdomain is from the allowed list
 - Tags is a list with at least 2 items

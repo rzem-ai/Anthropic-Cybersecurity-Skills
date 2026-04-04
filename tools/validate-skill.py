@@ -205,7 +205,9 @@ def validate_skill(skill_dir):
 
     # Validate description.
     desc = fm.get("description", "")
-    if isinstance(desc, str):
+    if isinstance(desc, list):
+        errors.append("Description must be a string value, not a list")
+    elif isinstance(desc, str):
         if len(desc) < DESCRIPTION_MIN_CHARS:
             errors.append(
                 f"Description too short ({len(desc)} chars, min {DESCRIPTION_MIN_CHARS})"
@@ -251,6 +253,9 @@ def main():
 
     if sys.argv[1] == "--all":
         skill_dirs = sorted(glob.glob("skills/*/"))
+        if not skill_dirs:
+            print("ERROR: No skill directories found. Run from the repository root.")
+            sys.exit(1)
     else:
         skill_dirs = [sys.argv[1].rstrip("/") + "/"]
 
